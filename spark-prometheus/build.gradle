@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'me.lucko'
+version '1.10-6b6t-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':spark-common')
+    compileOnly 'io.prometheus:simpleclient:0.16.0'
+    compileOnly 'io.prometheus:simpleclient_httpserver:0.16.0'
+}
+
+test {
+    useJUnitPlatform()
+}
