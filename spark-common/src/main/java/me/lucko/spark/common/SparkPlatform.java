@@ -20,6 +20,7 @@
 
 package me.lucko.spark.common;
 
+import com.anarchygroup.spark.PrometheusExporter;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
@@ -116,6 +117,7 @@ public class SparkPlatform {
     private Map<String, GarbageCollectorStatistics> startupGcStatistics = ImmutableMap.of();
     private long serverNormalOperationStartTime;
     private final AtomicBoolean enabled = new AtomicBoolean(false);
+    private final PrometheusExporter exporter;
 
     public SparkPlatform(SparkPlugin plugin) {
         this.plugin = plugin;
@@ -166,6 +168,7 @@ public class SparkPlatform {
         this.pingStatistics = pingProvider != null ? new PingStatistics(pingProvider) : null;
 
         this.statisticsProvider = new PlatformStatisticsProvider(this);
+        this.exporter = new PrometheusExporter(this);
     }
 
     public void enable() {
@@ -198,6 +201,7 @@ public class SparkPlatform {
         SparkApi.register(api);
 
         this.backgroundSamplerManager.initialise();
+        this.exporter.start();
     }
 
     public void disable() {
@@ -300,6 +304,10 @@ public class SparkPlatform {
 
     public long getServerNormalOperationStartTime() {
         return this.serverNormalOperationStartTime;
+    }
+
+    public PrometheusExporter getPrometheusExporter() {
+        return this.exporter;
     }
 
     public Path resolveSaveFile(String prefix, String extension) {

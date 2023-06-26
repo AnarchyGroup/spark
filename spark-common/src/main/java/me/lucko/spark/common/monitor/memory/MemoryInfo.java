@@ -57,11 +57,11 @@ public enum MemoryInfo {
     /* Swap */
 
     public static long getUsedSwap() {
-        return BEAN.getTotalSwapSpaceSize() - BEAN.getFreeSwapSpaceSize();
+        return 0L;
     }
 
     public static long getTotalSwap() {
-        return BEAN.getTotalSwapSpaceSize();
+        return 0L;
     }
 
     /* Physical Memory */
