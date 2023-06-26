@@ -5,3 +5,13 @@ out/
 run/
 *.iml
 .DS_Store
+
+# Kubernetes 6b6t specifics
+spark-bungeecord/
+spark-fabric/
+spark-forge/
+spark-minestom/
+spark-nukkit/
+spark-sponge7/
+spark-sponge8/
+spark-waterdog/
